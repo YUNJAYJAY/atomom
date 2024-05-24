@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNSLAB - Skin Lesion Analyzer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #E5F2FA;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bodyContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            margin-top: -10px;
+            width: 95%;
+            position: inherit;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #4E82B4;
+            padding: 5px;
+            color: white;
+            font-size: 20px;
+            /* text-align: center; */
+            position: fixed;
+        }
+
+        .container {
+            margin-top: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-direction: column;
+            width: 90%;
+            padding: 20px;
+            background-color: #F7F7F7;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        .buttonContainer {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-direction: column;
+            width: 90%;
+            padding: 20px;
+            background-color: #F7F7F7;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        .skinTypeContainer {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between;
+            align-items: center; */
+            width: 90%;
+            padding: 20px;
+            background-color: #F7F7F7;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        .skinTypeContainer h3 {
+            align-self: flex-start;
+            margin-top: 3px;
+            margin-bottom: 3px;
+            margin-left: 10px;
+            float : left;
+        }
+        .skinTypeContainer .buttons {
+            align-self: flex-start;
+            /* margin-top: 3px;
+            margin-bottom: 3px;
+            margin-left: 10px; */
+            float : left;
+        }
+        
+        .text-container {
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+        }
+
+        .header .logo {
+            vertical-align: middle;
+            margin-right: 5px;
+            height: 50px;
+        }
+        /* button {
+            display: flex;
+            /* flex-direction: row; 
+            justify-content: center;
+            width: 80%;
+            padding: 0;
+            margin: 2%;
+            font-weight: 600;
+            text-align: center;
+            line-height: 30px;
+            color: #FFF;
+            background-color: #4E82B4;
+            border-radius: 5px;
+            transition: all 0.2s ;
+            border: none;
+            box-shadow: black;
+        } */
+        button:hover {
+            background-color: #31506d;
+        }
+        .buttons{
+            display: flex;
+            /* flex-wrap: wrap; */
+            /* justify-content: space-between; /* 가로 방향으로 버튼들을 균등하게 분배 */
+        }
+        .buttons  .btn {
+            justify-content: center;
+            width: 100%;
+            padding: 6%;
+            margin: 2%;
+            font-weight: 550;
+            font-size: 16px;
+            text-align: center;
+            /* line-height: 50px; */
+            color: #FFF;
+            background-color: #4E82B4;
+            border-radius: 5px;
+            transition: all 0.2s ;
+            border: none;
+            box-shadow: black;
+        }
+        .buttons .btn.selected {
+            background-color: #04305f;
+            color: white;
+        }
+        .buttons .btn:hover {
+            background-color: #095096;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            line-height: 30px;
+            font-weight: 600;
+            transition: all 0.2s ;
+        }
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        /* 모바일 환경을 위한 미디어 쿼리 */
+        @media (max-width: 768px) {
+            .header {
+                width: 100%;
+                background-color: #4E82B4;
+                padding: 5px;
+                color: #ffffff;
+                font-size: 20px;
+                text-align: center;
+                position: fixed;
+            }
+            .container {
+                /* margin-top: 120px; */
+                width: 80%;
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #F7F7F7;
+            }
+            .buttonContainer {
+                margin-top: 20px;
+                width: 80%;
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .skinTypeContainer {
+                display: flex;
+                margin-top: 20px;
+                width: 80%;
+                padding: 10px;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #F7F7F7;
+            }
+            
+            
+        }
+    </style>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+        function uploadFile() {
+            document.getElementById('Coauthform').submit();
+        }
+
+        function triggerFileSelect() {
+            document.getElementById('uploadfile').click();
+        }
+        window.onload = function() {
+            const dropArea = document.getElementById('dragDropArea');
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, restoreDropAreaStyle, false);
+            });
+
+            dropArea.addEventListener('dragover', highlightDropArea, false);
+            dropArea.addEventListener('drop', handleDrop, false);
+            dropArea.addEventListener('click', function() {
+                document.getElementById('uploadfile').click();
+            }, false);
+        }
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlightDropArea() {
+            document.getElementById('dragDropArea').style.backgroundColor = '#f7f7f7';
+        }
+
+        function restoreDropAreaStyle() {
+            document.getElementById('dragDropArea').style.backgroundColor = '';
+        }
+
+        function handleDrop(e) {
+            preventDefaults(e)
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            document.getElementById('uploadfile').files = files;
+
+            uploadFile(); // 파일이 드래그 앤 드롭으로 전달되면 업로드를 바로 시작합니다.
+        }
+        // function goToPage(page) {
+        //     window.location.href = "{% url 'recCos' %}";
+        // }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Radio button logic for skin type selection
+            const skinTypeButtons = document.querySelectorAll('#skinTypeButtons .btn');
+            const skinTypeInput = document.getElementById('skinTypeInput');
+
+            skinTypeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    skinTypeButtons.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    skinTypeInput.value = button.getAttribute('data-value');
+                });
+            });
+
+            // Checkbox button logic for additional options
+            const additionalOptionsButtons = document.querySelectorAll('#additionalOptionsButtons .btn');
+            
+            additionalOptionsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    button.classList.toggle('selected');
+                    const checkbox = document.getElementById(button.getAttribute('data-value'));
+                    checkbox.checked = !checkbox.checked;
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <img src="static/logo2.png" alt="SNSLAB Logo" class="logo">
+        SNSLAB - Skin Lesion Analyzer
+    </div>
+    <div class="bodyContainer">
+        <div class="container">
+            <form action="{% url 'result' %}" method="get" style="display: inline;">
+                <button type="submit" class="gotopageButton">Back to Home</button>
+            </form>
+        </div>
+        <div class="skinTypeContainer">
+            <h3>Lesion Result</h3>
+            <div class="skinTypeContainer" style="margin-top: 3px; background-color: #d0e6fb; width: 90%;">
+                <strong style="color : rgb(33, 33, 33);">{{first_data}}</strong>
+            </div>
+        </div>
+        <div class="skinTypeContainer">
+            <h3>Skin Type   <span style="font-size : 14px; color : grey">(Select only one)</span></h3>
+            <div class="buttons" id="skinTypeButtons">
+                <div class="btn" data-value="oily">Oily</div>
+                <div class="btn" data-value="dry">Dry</div>
+                <div class="btn" data-value="combination">SENSITIVE</div>
+            </div>
+            <input type="hidden" name="skinType" id="skinTypeInput" required>
+        </div>
+        <div class="skinTypeContainer">
+            <h3>Add on Data</h3>
+            <div class="buttons" id="additionalOptionsButtons">
+                <div class="btn" data-value="option1">EWG</div>
+                <div class="btn" data-value="option2">ALLERGY</div>
+                <div class="btn" data-value="option3">TWENTY</div>
+            </div>
+            <!-- <input type="checkbox" name="options" value="option1" id="option1" class="hidden">
+            <input type="checkbox" name="options" value="option2" id="option2" class="hidden">
+            <input type="checkbox" name="options" value="option3" id="option3" class="hidden"> -->
+        </div>
+        <div class="skinTypeContainer">
+            <button type="submit">Recommand</button>
+        </div>
+</body>
+
+</html>
