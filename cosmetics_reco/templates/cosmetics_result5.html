@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>cosmetics_result5</title>
+    <style>
+        {#배경색#}
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #E5F2FA;
+        }
+        {#중앙정렬, auto#}
+        div{
+            text-align: center;
+            height: auto;
+            width: auto;
+        }
+        {#배경 사각 박스#}
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #F7F7F7;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        {#진한 글씨 - 제목#}
+        .title1 {
+            font-size: 23px;
+            margin-top: 15px;
+        }
+        {#진한 글씨 - 이름#}
+        .title2 {
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        {#보통 글씨 - 부가설명#}
+        .results_title {
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        {#보통 글씨 - 성분#}
+        .info{
+            font-size: 14px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        {#두번째 박스#}
+        .results_box{
+            border-radius: 10px;
+            background-color: white;
+            margin: 0 auto;
+            height: auto;
+        }
+        {#사진이 들어갈 위치#}
+        .image{
+            border-radius: 10px;
+            height: auto;
+            background-color: transparent;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+        {#버튼#}
+        .btn{
+            border-radius: 10px;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 14px;
+            color: white;
+            vertical-align: center;
+            background-color: #2E4E75;
+            height: auto;
+        }
+        @media screen and (max-width: 768px){
+            .container {
+                width: 80%;
+                padding: 10px;
+                height: auto;
+            }
+            .title1{
+                font-size: 18px;
+                margin-top: 10px;
+            }
+            .results_title{
+                width: 80%;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                height: auto;
+                font-size: 12px;
+            }
+            .results_box {
+                width: 100%;
+                margin: 3px 0;
+            }
+            .image {
+                width: 80%;
+                height: auto;
+            }
+            .info{
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .title2 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title1">
+            <b>화장품 추천 리스트</b>
+        </div>
+        <div class="results_title">순위와 무관합니다</div>
+        <div class="title2">
+            <b>화장품5</b>
+        </div>
+        <div class="image">
+            <img src="cosm_ex.png">
+        </div>
+        <div class="results_box">
+            <div class="title2">
+                <b>피지오겔 데일리 모이스쳐 테라피 바디로션</b>
+            </div>
+            <div class="info">
+                <br>브랜드: 피지오겔</br>
+                <br>가격: 33,500원</br>
+                <br>성분: 카프릭트라이글리세라이드, 시어버터</br>
+            </div>
+        </div>
+        <button type="button", class="btn">다시하기</button>
+    </div>
+</body>
+</html>

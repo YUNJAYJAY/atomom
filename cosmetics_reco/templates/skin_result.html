@@ -1,0 +1,84 @@
+{# 수정중 #}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>skin_result</title>
+    <style>
+        {#배경색#}
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #E5F2FA;
+        }
+        {#배경 사각 박스#}
+        .container {
+            max-width: 1200px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: 50px;
+            margin-left: auto;
+            margin-right: 50px;
+            margin-right: auto;
+            padding: 20px;
+            background-color: #F7F7F7;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+
+        }
+        {#진한 글씨#}
+        .title {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        {#사진이 들어갈 위치#}
+        .image{
+            border-radius: 10px;
+            width: 312px;
+            height: 323px;
+            background-color: black;
+            margin: 0 auto;
+        }
+        {#진단 결과가 나올 박스#}
+        .results_box{
+            border-radius: 10px;
+            width: 330px;
+            height: 174px;
+            background-color: white;
+            margin: 0 auto;
+        }
+        {#진단 결과 글씨#}
+        .results_title {
+            font-size: 14px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 100px;
+
+        }
+        @media screen and (max-width: 768px){
+            .container {
+                width: 80%;
+                height: auto;
+                text-align: center;
+            }
+            .image {
+                width: 80%;
+                height: auto;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <b>예상 병명은 아래와 같습니다</b>
+        </div>
+        <div class="image"></div>
+    </div>
+</body>
+</html>
