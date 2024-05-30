@@ -37,6 +37,7 @@
 
         .container {
             margin-top: 120px;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -48,7 +49,8 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
         .buttonContainer {
-            margin-top: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -231,9 +233,12 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-bottom: 10px;
+
             }
             .buttonContainer {
-                margin-top: 20px;
+                margin-top: 10px;
+                margin-bottom: 10px;
                 width: 80%;
                 padding: 10px;
                 display: flex;
@@ -344,21 +349,38 @@
 
             uploadFile(); // 파일이 드래그 앤 드롭으로 전달되면 업로드를 바로 시작합니다.
         }
-        // function goToPage(page) {
-        //     window.location.href = "{% url 'recCos' %}";
-        // }
+        function createButton() {
+            const buttonContainer = document.getElementById('uploadButton');
+            buttonContainer.innerHTML = ''; // 기존 버튼을 초기화
+            const button = document.createElement('button');
+            button.innerText = 'Next';
+            button.onclick = function() {
+                // 페이지 이동 로직 구현
+                window.location.href = '/next-page/';
+            };
+            buttonContainer.appendChild(button);
+        }
     </script>
 </head>
 <body>
     <div class="header">
         <img src="static/logo.png" alt="SNSLAB Logo" class="logo">
-        SNSLAB - Skin Lesion Analyzer
+        Skin Lesion Analyzer
     </div>
     <div class="bodyContainer">
         <div class="container">
             <!-- <h1 class="title">Try it now</h1>
             <p class="description">Skin Lesion Recognition - Basic model that can recognize Atopy...</p> -->
-    
+            <div class="button-container">
+                <div id="dragDropArea" style="border: 2px dashed #4E82B4; padding: 20px; text-align: center; cursor: pointer;">
+    <!--                <img src="static/icon.png" alt="SNSLAB icon" class="icon">-->
+                    Drag & Drop or <span style="color: #4E82B4; text-decoration: underline;">Click here</span> to upload image
+                </div>
+                <form action="" method="post" id="Coauthform" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="uploadfile" id="uploadfile" onchange="uploadFile();" style="display:none;"/>
+                </form>
+            </div>
             <div class="image-container">
                 <div class="img-wrapper">
                     <span class="img-label">Pre-Analysis</span>
@@ -368,16 +390,6 @@
                 <div class="img-wrapper">
                     <span class="img-label">Post-Analysis</span>
                     <img src="static/source/{{resultImgname}}" width="224" height="224"/>
-                </div>
-                <div class="button-container">
-                    <div id="dragDropArea" style="border: 2px dashed #4E82B4; padding: 20px; text-align: center; cursor: pointer;">
-        <!--                <img src="static/icon.png" alt="SNSLAB icon" class="icon">-->
-                        Drag & Drop or <span style="color: #4E82B4; text-decoration: underline;">Click here</span> to upload image
-                    </div>
-                    <form action="" method="post" id="Coauthform" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="file" name="uploadfile" id="uploadfile" onchange="uploadFile();" style="display:none;"/>
-                    </form>
                 </div>
             </div>
             
@@ -390,7 +402,7 @@
                 <div class="tooltip">
         <!--                <strong>Diagnostic Result</strong>-->
                     <strong>AI Analysis Results</strong>
-                    <span class="tooltiptext"><pre class="original-text">{{originaltext}}</pre></span>
+                    <!-- <span class="tooltiptext"><pre class="original-text">{{originaltext}}</pre></span> -->
                 </div>
                 <pre class="result-text">{{resulttext}}</pre>
             </div>
@@ -399,7 +411,7 @@
         <div class="buttonContainer">
             <div class="button-container">
                 <form action="{% url 'recCos' %}" method="get" style="display: inline;">
-                    <button type="submit" class="gotopageButton">Go to Another Page</button>
+                    <button type="submit" class="gotopageButton" onclick="uploadImage()">Recommend Cosmetic</button>
                 </form>
             </div>
         </div>

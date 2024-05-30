@@ -36,7 +36,7 @@
         }
 
         .container {
-            margin-top: 120px;
+            margin-top: 90px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -160,6 +160,20 @@
         }
         button[type="submit"]:hover {
             background-color: #218838;
+        }
+        .randomButton {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            line-height: 30px;
+            font-weight: 600;
+            transition: all 0.2s ;
+            margin-top: 10px
         }
         /* 모바일 환경을 위한 미디어 쿼리 */
         @media (max-width: 768px) {
@@ -294,6 +308,23 @@
                 });
             });
         });
+        document.getElementById('randomButton').addEventListener('click', function() {
+            fetch('/random-data')
+                .then(response => response.json())
+                .then(data => {
+                    const randomDataContainer = document.getElementById('randomDataContainer');
+                    randomDataContainer.innerHTML = ''; // 이전 데이터를 지우기
+
+                    data.forEach(item => {
+                        const p = document.createElement('p');
+                        p.textContent = item;
+                        randomDataContainer.appendChild(p);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
     </script>
 </head>
 <body>
@@ -303,41 +334,24 @@
     </div>
     <div class="bodyContainer">
         <div class="container">
-            <form action="{% url 'result' %}" method="get" style="display: inline;">
+            <form action="{% url 'recCos' %}" method="get" style="display: inline;">
                 <button type="submit" class="gotopageButton">Back to Home</button>
             </form>
         </div>
         <div class="skinTypeContainer">
-            <h3>Lesion Result</h3>
-            <div class="skinTypeContainer" style="margin-top: 3px; background-color: #d0e6fb; width: 90%;">
-                <strong style="color : rgb(33, 33, 33);">{{first_data}}</strong>
+            <h3>Recommend Result</h3>
+            <div class="skinTypeContainer" style="margin-top: 3px; margin-bottom: 3px; background-color: #d0e6fb; width: 90%;">
+                <a style="float: left">Brand</a>
+                <strong style="color : rgb(33, 33, 33);">{{record.brand}}</strong>
             </div>
-        </div>
-        <div class="skinTypeContainer">
-            <h3>Skin Type   <span style="font-size : 14px; color : grey">(Select only one)</span></h3>
-            <div class="buttons" id="skinTypeButtons">
-                <div class="btn" data-value="oily">Oily</div>
-                <div class="btn" data-value="dry">Dry</div>
-                <div class="btn" data-value="combination">SENSITIVE</div>
+            <div class="skinTypeContainer" style="margin-top: 6px; background-color: #d0e6fb; width: 90%;">
+                Cosmetic Name
+                <strong style="color : rgb(33, 33, 33);">{{record.name}}</strong>
             </div>
-            <input type="hidden" name="skinType" id="skinTypeInput" required>
+                <!-- 버튼을 클릭하면 페이지를 새로고침하여 새로운 레코드를 가져옴 -->
+                <button onclick="location.reload()" class="randomButton">Get Random Record</button>
         </div>
-        <div class="skinTypeContainer">
-            <h3>Add on Data</h3>
-            <div class="buttons" id="additionalOptionsButtons">
-                <div class="btn" data-value="option1">EWG</div>
-                <div class="btn" data-value="option2">ALLERGY</div>
-                <div class="btn" data-value="option3">TWENTY</div>
-            </div>
-            <!-- <input type="checkbox" name="options" value="option1" id="option1" class="hidden">
-            <input type="checkbox" name="options" value="option2" id="option2" class="hidden">
-            <input type="checkbox" name="options" value="option3" id="option3" class="hidden"> -->
-        </div>
-        <div class="skinTypeContainer">
-        <form action="{% url 'cosmetic' %}" method="get">
-            <button type="submit">Recommand</button>
-        </form>
-        </div>
+        
 </body>
 
 </html>

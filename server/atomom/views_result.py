@@ -153,7 +153,7 @@ def result(request):
             name_no_ext, ext = os.path.splitext(uploadfile.name)
             json_filename = f"{name_no_ext}.json"
             json_file_path = os.path.join(curPath, 'json_files', json_filename)
-            
+            print(formatted_data_res)
             with open(json_file_path, 'w') as json_file:
                 json.dump(result_data, json_file)
                 
