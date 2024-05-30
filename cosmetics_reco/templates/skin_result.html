@@ -1,4 +1,3 @@
-{# 수정중 #}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,79 +5,113 @@
     <title>skin_result</title>
     <style>
         {#배경색#}
-        body {
+        body{
             font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #E5F2FA;
         }
+        {#중앙정렬, auto#}
+        div{
+            text-align: center;
+        }
         {#배경 사각 박스#}
-        .container {
+        .container{
             max-width: 1200px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            margin-left: 50px;
-            margin-left: auto;
-            margin-right: 50px;
-            margin-right: auto;
+            margin: 30px auto;
             padding: 20px;
             background-color: #F7F7F7;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        {#진한 글씨#}
-        .title {
-            font-size: 18px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            text-align: center;
+        {#진한 글씨 - 제목#}
+        .title1{
+            font-size: 20px;
+            margin-top: 15px;
+        }
+        {#보통 글씨 - 성분#}
+        .info{
+            font-size: 16px;
+            margin-top: 80px;
+        }
+        {#두번째 박스#}
+        .results_box{
+            border-radius: 5px;
+            background-color: white;
+            min-height: 200px;
+            height: auto;
+            min-width: 300px;
+            width: auto;
         }
         {#사진이 들어갈 위치#}
         .image{
-            border-radius: 10px;
-            width: 312px;
-            height: 323px;
-            background-color: black;
-            margin: 0 auto;
+            height: auto;
+            margin: 10px 0;
         }
-        {#진단 결과가 나올 박스#}
-        .results_box{
-            border-radius: 10px;
-            width: 330px;
-            height: 174px;
-            background-color: white;
-            margin: 0 auto;
+        {#버튼#}
+        button{
+            border-radius: 5px;
+            margin-top: 5px;
+            font-size: 18px;
+            color: white;
+            vertical-align: top;
+            background-color: #2E4E75;
+            padding: 10px;
         }
-        {#진단 결과 글씨#}
-        .results_title {
-            font-size: 14px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            padding: 100px;
-
+        {#results_box와 버튼 사이의 공백#}
+        .btn_interval{
+            margin-top: 5px;
+        }
+        {#버튼과 버튼 사이의 공백#}
+        .btn_space{
+            width: 10px;
+            height: auto;
+            display: inline-block;
         }
         @media screen and (max-width: 768px){
             .container {
                 width: 80%;
-                height: auto;
-                text-align: center;
+                padding: 10px;
             }
-            .image {
-                width: 80%;
-                height: auto;
-                text-align: center;
+            .title1{
+                font-size: 20px;
+                margin-top: 10px;
+            }
+            .results_box {
+                width: 100%;
+            }
+            .info{
+                margin-top: 70px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="title">
+        <div class="title1">
             <b>예상 병명은 아래와 같습니다</b>
         </div>
-        <div class="image"></div>
+        <div class="image">
+            <img src="picture/skin.jfif">
+        </div>
+        <div class="title1">
+            <b>진단 결과</b>
+        </div>
+        <div class="results_box">
+            <div class="info">
+                <br>아토피로 예상됩니다</br>
+            </div>
+        </div>
+        <div class="btn_interval">
+            <button>
+                화장품 추천 받기
+            </button>
+            <div class="btn_space"></div>
+            <button>
+                그만하기
+            </button>
+        </div>
     </div>
 </body>
 </html>

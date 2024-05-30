@@ -5,110 +5,99 @@
     <title>cosmetics_result4</title>
     <style>
         {#배경색#}
-        body {
+        body{
             font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #E5F2FA;
         }
         {#중앙정렬, auto#}
         div{
             text-align: center;
-            height: auto;
-            width: auto;
         }
         {#배경 사각 박스#}
-        .container {
+        .container{
             max-width: 1200px;
             margin: 30px auto;
-            margin-top: 30px;
             padding: 20px;
             background-color: #F7F7F7;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            border-radius: 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         {#진한 글씨 - 제목#}
-        .title1 {
-            font-size: 23px;
+        .title1{
+            font-size: 20px;
             margin-top: 15px;
         }
         {#진한 글씨 - 이름#}
-        .title2 {
+        .title2{
             font-size: 18px;
             margin-top: 10px;
-            margin-bottom: 10px;
         }
         {#보통 글씨 - 부가설명#}
-        .results_title {
+        .title3{
             font-size: 14px;
-            margin-top: 5px;
-            margin-bottom: 5px;
         }
         {#보통 글씨 - 성분#}
         .info{
-            font-size: 14px;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            font-size: 16px;
+            margin-top: 80px;
         }
         {#두번째 박스#}
         .results_box{
-            border-radius: 10px;
+            border-radius: 5px;
             background-color: white;
-            margin: 0 auto;
-            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 10px;
         }
         {#사진이 들어갈 위치#}
         .image{
-            border-radius: 10px;
             height: auto;
-            background-color: transparent;
-            margin: 0 auto;
             margin-bottom: 10px;
+            margin-top: 10px;
         }
         {#버튼#}
-        .btn{
-            border-radius: 10px;
+        button{
+            border-radius: 5px;
             margin-top: 10px;
-            padding: 10px;
-            font-size: 20px;
+            padding: 5px 30px;
+            font-size: 14px;
+            color: white;
             vertical-align: center;
             background-color: #2E4E75;
             height: auto;
         }
+        {#results_box와 버튼 사이의 공백#}
+        .btn_interval{
+            margin-top: 5px;
+        }
         @media screen and (max-width: 768px){
-            .container {
+            .container{
                 width: 80%;
                 padding: 10px;
-                height: auto;
             }
             .title1{
-                font-size: 18px;
+                font-size: 20px;
                 margin-top: 10px;
             }
-            .results_title{
+            .title2{
+                font-size: 18px;
+            }
+            .title3{
                 width: 80%;
-                margin-top: 5px;
-                margin-bottom: 5px;
-                height: auto;
                 font-size: 12px;
-            }
-            .results_box {
-                width: 100%;
-                margin: 3px 0;
-            }
-            .image {
-                width: 80%;
-                height: auto;
             }
             .info{
                 margin-top: 10px;
                 margin-bottom: 10px;
             }
-            .title2 {
-                font-size: 16px;
+            .results_box{
+                width: 100%;
+                padding: 20px 3px;
             }
         }
     </style>
@@ -118,12 +107,12 @@
         <div class="title1">
             <b>화장품 추천 리스트</b>
         </div>
-        <div class="results_title">순위와 무관합니다</div>
-        <div class="title2">
+        <div class="title3">순위와 무관합니다</div>
+        <div class="title1">
             <b>화장품4</b>
         </div>
         <div class="image">
-            <img src="cosm_ex.png">
+            <img src="picture/cosm_ex.png">
         </div>
         <div class="results_box">
             <div class="title2">
@@ -135,8 +124,9 @@
                 <br>성분: 카프릭트라이글리세라이드, 시어버터</br>
             </div>
         </div>
-        <button type="button", class="btn">
-            <img src="btn_play.png" >
+        <div class="btn_interval"></div>
+        <button>
+            <img src="picture/btn_play.png" >
         </button>
     </div>
 </body>

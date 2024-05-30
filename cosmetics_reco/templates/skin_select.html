@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>cosmetics_result3</title>
+    <title>skin_select</title>
     <style>
         {#배경색#}
         body{
@@ -30,19 +30,9 @@
             font-size: 20px;
             margin-top: 15px;
         }
-        {#진한 글씨 - 이름#}
-        .title2{
-            font-size: 18px;
-            margin-top: 10px;
-        }
         {#보통 글씨 - 부가설명#}
         .title3{
             font-size: 14px;
-        }
-        {#보통 글씨 - 성분#}
-        .info{
-            font-size: 16px;
-            margin-top: 80px;
         }
         {#두번째 박스#}
         .results_box{
@@ -52,28 +42,30 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px 10px;
-        }
-        {#사진이 들어갈 위치#}
-        .image{
-            height: auto;
-            margin-bottom: 10px;
-            margin-top: 10px;
+            padding: 30px 2px;
+            margin: 5px 0;
+            width: 400px;
         }
         {#버튼#}
         button{
             border-radius: 5px;
-            margin-top: 10px;
-            padding: 5px 30px;
-            font-size: 14px;
+            margin-top: 5px;
+            font-size: 18px;
             color: white;
-            vertical-align: center;
+            vertical-align: top;
             background-color: #2E4E75;
-            height: auto;
+            height: 40px;
+            width: 90px;
         }
         {#results_box와 버튼 사이의 공백#}
         .btn_interval{
             margin-top: 5px;
+        }
+        {#버튼과 버튼 사이의 공백#}
+        .btn_space{
+            width: 2px;
+            height: auto;
+            display: inline-block;
         }
         @media screen and (max-width: 768px){
             .container{
@@ -84,49 +76,69 @@
                 font-size: 20px;
                 margin-top: 10px;
             }
-            .title2{
-                font-size: 18px;
-            }
             .title3{
                 width: 80%;
                 font-size: 12px;
             }
-            .info{
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
             .results_box{
                 width: 100%;
-                padding: 20px 3px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="title1">
-            <b>화장품 추천 리스트</b>
-        </div>
-        <div class="title3">순위와 무관합니다</div>
-        <div class="title1">
-            <b>화장품3</b>
-        </div>
-        <div class="image">
-            <img src="picture/cosm_ex.png">
+        <div class="results_box">
+            <div class="title1">
+                <b>피부타입을 선택해주세요</b>
+            </div>
+            <div class="btn_interval">
+                <button>
+                    지성
+                </button>
+                <div class="btn_space"></div>
+                <button>
+                    건성
+                </button>
+                <div class="btn_space"></div>
+                <button>
+                    민감성
+                </button>
+            </div>
         </div>
         <div class="results_box">
-            <div class="title2">
-                <b>피지오겔 데일리 모이스쳐 테라피 바디로션</b>
+            <div class="title1">
+                <b>추가로 확인하고 싶은 데이터를 선택해주세요</b>
             </div>
-            <div class="info">
-                <br>브랜드: 피지오겔</br>
-                <br>가격: 33,500원</br>
-                <br>성분: 카프릭트라이글리세라이드, 시어버터</br>
+            <div class="title3">
+                기본 제공 데이터: 화장품, 이름, 성분
+            </div>
+            <div class="btn_interval">
+                <button>
+                    EWG
+                </button>
+                <div class="btn_space"></div>
+                <button>
+                    알러지
+                </button>
+                <div class="btn_space"></div>
+                <button>
+                    주의성분
+                </button>
+            </div>
+            <div class="btn_interval">
+                <button>
+                    없음
+                </button>
+            </div>
+            <div class="title3">
+                <br>EWG: 화장품 성분 안정성 등급</br>
+                <br>알러지: 알러지 유발 주의성분</br>
+                <br>주의성분: 화장품 주의성분</br>
             </div>
         </div>
-        <div class="btn_interval"></div>
         <button>
-            <img src="picture/btn_play.png" >
+            결과확인
         </button>
     </div>
 </body>
