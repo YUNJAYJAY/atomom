@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>cosmetics_result3</title>
+    <title>skin_result</title>
     <style>
         {#배경색#}
         body{
@@ -30,15 +30,6 @@
             font-size: 20px;
             margin-top: 15px;
         }
-        {#진한 글씨 - 이름#}
-        .title2{
-            font-size: 18px;
-            margin-top: 10px;
-        }
-        {#보통 글씨 - 부가설명#}
-        .title3{
-            font-size: 14px;
-        }
         {#보통 글씨 - 성분#}
         .info{
             font-size: 16px;
@@ -48,35 +39,50 @@
         .results_box{
             border-radius: 5px;
             background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 10px;
+            min-height: 200px;
+            height: auto;
+            min-width: 300px;
+            width: auto;
         }
         {#사진이 들어갈 위치#}
         .image{
             height: auto;
-            margin-bottom: 10px;
-            margin-top: 10px;
+            margin: 10px 0;
         }
         {#버튼#}
         button{
             border-radius: 5px;
-            margin-top: 10px;
-            padding: 5px 30px;
-            font-size: 14px;
+            margin-top: 5px;
+            font-size: 18px;
             color: white;
-            vertical-align: center;
+            vertical-align: top;
             background-color: #2E4E75;
-            height: auto;
+            padding: 10px;
+        }
+        {#버튼에 마우스를 올렸을때#}
+        button:hover{
+            background-color: #203753;
+        }
+        {#버튼 클릭하고 있을때#}
+        button:active{
+            background-color: #203753;
+        }
+        {#버튼 클릭했을때#}
+        button:focus{
+            background-color: #081F3C;
         }
         {#results_box와 버튼 사이의 공백#}
         .btn_interval{
             margin-top: 5px;
         }
+        {#버튼과 버튼 사이의 공백#}
+        .btn_space{
+            width: 10px;
+            height: auto;
+            display: inline-block;
+        }
         @media screen and (max-width: 768px){
-            .container{
+            .container {
                 width: 80%;
                 padding: 10px;
             }
@@ -84,20 +90,11 @@
                 font-size: 20px;
                 margin-top: 10px;
             }
-            .title2{
-                font-size: 18px;
-            }
-            .title3{
-                width: 80%;
-                font-size: 12px;
+            .results_box {
+                width: 100%;
             }
             .info{
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-            .results_box{
-                width: 100%;
-                padding: 20px 3px;
+                margin-top: 70px;
             }
         }
     </style>
@@ -105,29 +102,28 @@
 <body>
     <div class="container">
         <div class="title1">
-            <b>화장품 추천 리스트</b>
-        </div>
-        <div class="title3">순위와 무관합니다</div>
-        <div class="title1">
-            <b>화장품3</b>
+            <b>예상 병명은 아래와 같습니다</b>
         </div>
         <div class="image">
-            <img src="picture/cosm_ex.png">
+            <img src="picture/skin.jfif">
+        </div>
+        <div class="title1">
+            <b>진단 결과</b>
         </div>
         <div class="results_box">
-            <div class="title2">
-                <b>피지오겔 데일리 모이스쳐 테라피 바디로션</b>
-            </div>
             <div class="info">
-                <br>브랜드: 피지오겔</br>
-                <br>가격: 33,500원</br>
-                <br>성분: 카프릭트라이글리세라이드, 시어버터</br>
+                아토피로 예상됩니다
             </div>
         </div>
-        <div class="btn_interval"></div>
-        <button>
-            <img src="picture/btn_play.png" >
-        </button>
+        <div class="btn_interval">
+            <button>
+                화장품 추천 받기
+            </button>
+            <div class="btn_space"></div>
+            <button>
+                그만하기
+            </button>
+        </div>
     </div>
 </body>
 </html>

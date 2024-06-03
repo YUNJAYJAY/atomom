@@ -63,13 +63,25 @@
         {#버튼#}
         button{
             border-radius: 5px;
-            margin-top: 5px;
-            font-size: 18px;
+            margin-top: 10px;
+            padding: 5px 30px;
+            font-size: 14px;
             color: white;
-            vertical-align: top;
+            vertical-align: center;
             background-color: #2E4E75;
-            height: 40px;
-            width: 90px;
+            height: auto;
+        }
+        {#버튼에 마우스를 올렸을때#}
+        button:hover{
+            background-color: #203753;
+        }
+        {#버튼 클릭하고 있을때#}
+        button:active{
+            background-color: #203753;
+        }
+        {#버튼 클릭했을때#}
+        button:focus{
+            background-color: #081F3C;
         }
         {#results_box와 버튼 사이의 공백#}
         .btn_interval{
@@ -109,7 +121,7 @@
         </div>
         <div class="title3">순위와 무관합니다</div>
         <div class="title1">
-            <b>화장품5</b>
+            <b>화장품4</b>
         </div>
         <div class="image">
             <img src="picture/cosm_ex.png">
@@ -125,7 +137,9 @@
             </div>
         </div>
         <div class="btn_interval"></div>
-        <button>다시하기</button>
+        <button>
+            <img src="picture/btn_play.png" >
+        </button>
     </div>
 </body>
 </html>

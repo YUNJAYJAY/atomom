@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>skin_result</title>
+    <style>
+        {#배경색#}
+        body{
+            font-family: 'Arial', sans-serif;
+            background-color: #E5F2FA;
+        }
+        {#중앙정렬, auto#}
+        div{
+            text-align: center;
+        }
+        {#배경 사각 박스#}
+        .container{
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #F7F7F7;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        {#진한 글씨 - 제목#}
+        .title1{
+            font-size: 20px;
+            margin-top: 15px;
+        }
+        {#보통 글씨 - 성분#}
+        .info{
+            font-size: 16px;
+            margin-top: 80px;
+        }
+        {#두번째 박스#}
+        .results_box{
+            border-radius: 5px;
+            background-color: white;
+            min-height: 200px;
+            height: auto;
+            min-width: 300px;
+            width: auto;
+        }
+        {#사진이 들어갈 위치#}
+        .image_box {
+            width: 100%;
+            max-width: 200px;
+            margin: 10px 0;
+        }
+        {#사진크기#}
+        .image_picture {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        {#버튼#}
+        button{
+            border-radius: 5px;
+            margin-top: 5px;
+            font-size: 18px;
+            color: white;
+            vertical-align: top;
+            background-color: #2E4E75;
+            padding: 10px;
+        }
+        {#버튼에 마우스를 올렸을때#}
+        button:hover{
+            background-color: #203753;
+        }
+        {#버튼 클릭하고 있을때#}
+        button:active{
+            background-color: #203753;
+        }
+        {#버튼 클릭했을때#}
+        button:focus{
+            background-color: #081F3C;
+        }
+        {#results_box와 버튼 사이의 공백#}
+        .btn_interval{
+            margin-top: 5px;
+        }
+        {#버튼과 버튼 사이의 공백#}
+        .btn_space{
+            width: 10px;
+            height: auto;
+            display: inline-block;
+        }
+        @media screen and (max-width: 361mm){
+            .container {
+                width: 80%;
+                padding: 10px;
+                min-height: 1400px;
+                margin: 50px auto;
+            }
+            .title1{
+                font-size: 50px;
+                margin-top: 50px;
+            }
+            .results_box {
+                width: 90%;
+                min-height: 500px;
+                margin-top: 30px;
+            }
+            .info{
+                font-size: 30px;
+                margin-top: 200px;
+            }
+            .image_box {
+                width: 100%;
+                max-width: 500px;
+                margin-top: 50px;
+            }
+            .image_picture {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+            button{
+                font-size: 35px;
+            }
+            .btn_interval{
+                margin-top: 30px;
+            }
+            .btn_space{
+                width: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title1">
+            <b>예상 병명은 아래와 같습니다</b>
+        </div>
+        <div class="image_box">
+            <img class="image_picture" src="picture/skin.jfif">
+        </div>
+        <div class="title1">
+            <b>진단 결과</b>
+        </div>
+        <div class="results_box">
+            <div class="info">
+                아토피로 예상됩니다
+            </div>
+        </div>
+        <div class="btn_interval">
+            <button>
+                화장품 추천 받기
+            </button>
+            <div class="btn_space"></div>
+            <button>
+                그만하기
+            </button>
+        </div>
+    </div>
+</body>
+</html>
