@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'atomom',
     'silk',
-    'corsheaders',
+    'corsheaders'
     # 'rest_framework',
 ]
 TIME_ZONE = 'Asia/Seoul'
@@ -65,7 +65,10 @@ MIDDLEWARE = [
 
 
 ]
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
@@ -175,6 +178,9 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static',
+# ]
 SILKY_PYTHON_PROFILER = True
 SILKY_PYTHON_PROFILER_BINARY = True
 SILKY_PYTHON_PROFILER_RESULT_PATH = os.path.join(BASE_DIR, 'profiles')

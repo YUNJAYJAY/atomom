@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SNSLAB - Skin Lesion Analyzer</title>
     <style>
+        @font-face {
+            font-family: 'pretendard';
+            src: url('fonts/Pretendard-Medium.woff') format('woff');
+        }
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'pretendard', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #E5F2FA;
@@ -31,7 +36,7 @@
             padding: 5px;
             color: white;
             font-size: 20px;
-            /* text-align: center; */
+            text-align: flex-start;
             position: fixed;
         }
 
@@ -175,6 +180,81 @@
             transition: all 0.2s ;
             margin-top: 10px
         }
+
+        .title1{
+            font-size: 20px;
+            margin-top: 15px;
+        }
+
+        .title2{
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .title3{
+            font-size: 14px;
+        }
+        .info{
+            font-size: 16px;
+            margin-top: 80px;
+        }
+        .results_box{
+            border-radius: 5px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 10px;
+        }
+        .image{
+            height: auto;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        #cos_img{
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            
+        }
+
+        .btn_interval{
+            margin-top: 5px;
+        }
+        .skinTypeContainer h2, a {
+            width: 100%;
+            text-align: center;
+            word-wrap: break-word; /* 긴 텍스트를 줄바꿈 처리 */
+            white-space: pre-wrap; /* 공백과 줄바꿈을 유지 */
+        }
+        @media screen and (max-width: 768px){
+            .container{
+                width: 80%;
+                padding: 10px;
+            }
+            .title1{
+                font-size: 20px;
+                margin-top: 10px;
+            }
+            .title2{
+                font-size: 18px;
+            }
+            .title3{
+                width: 80%;
+                font-size: 12px;
+            }
+            .info{
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .results_box{
+                width: 100%;
+                padding: 20px 3px;
+            }
+        }
         /* 모바일 환경을 위한 미디어 쿼리 */
         @media (max-width: 768px) {
             .header {
@@ -183,7 +263,7 @@
                 padding: 5px;
                 color: #ffffff;
                 font-size: 20px;
-                text-align: center;
+                /* text-align: center; */
                 position: fixed;
             }
             .container {
@@ -211,147 +291,44 @@
                 justify-content: space-between;
                 align-items: center;
                 background-color: #F7F7F7;
-            }
-            
-            
+            }  
         }
     </style>
-    <script>
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-
-        var csrftoken = getCookie('csrftoken');
-
-        function uploadFile() {
-            document.getElementById('Coauthform').submit();
-        }
-
-        function triggerFileSelect() {
-            document.getElementById('uploadfile').click();
-        }
-        window.onload = function() {
-            const dropArea = document.getElementById('dragDropArea');
-
-            ['dragenter', 'dragover'].forEach(eventName => {
-                dropArea.addEventListener(eventName, preventDefaults, false);
-            });
-
-            ['dragleave', 'drop'].forEach(eventName => {
-                dropArea.addEventListener(eventName, restoreDropAreaStyle, false);
-            });
-
-            dropArea.addEventListener('dragover', highlightDropArea, false);
-            dropArea.addEventListener('drop', handleDrop, false);
-            dropArea.addEventListener('click', function() {
-                document.getElementById('uploadfile').click();
-            }, false);
-        }
-
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        function highlightDropArea() {
-            document.getElementById('dragDropArea').style.backgroundColor = '#f7f7f7';
-        }
-
-        function restoreDropAreaStyle() {
-            document.getElementById('dragDropArea').style.backgroundColor = '';
-        }
-
-        function handleDrop(e) {
-            preventDefaults(e)
-            const dt = e.dataTransfer;
-            const files = dt.files;
-
-            document.getElementById('uploadfile').files = files;
-
-            uploadFile(); // 파일이 드래그 앤 드롭으로 전달되면 업로드를 바로 시작합니다.
-        }
-        // function goToPage(page) {
-        //     window.location.href = "{% url 'recCos' %}";
-        // }
-        document.addEventListener('DOMContentLoaded', function() {
-            // Radio button logic for skin type selection
-            const skinTypeButtons = document.querySelectorAll('#skinTypeButtons .btn');
-            const skinTypeInput = document.getElementById('skinTypeInput');
-
-            skinTypeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    skinTypeButtons.forEach(btn => btn.classList.remove('selected'));
-                    button.classList.add('selected');
-                    skinTypeInput.value = button.getAttribute('data-value');
-                });
-            });
-
-            // Checkbox button logic for additional options
-            const additionalOptionsButtons = document.querySelectorAll('#additionalOptionsButtons .btn');
-            
-            additionalOptionsButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    button.classList.toggle('selected');
-                    const checkbox = document.getElementById(button.getAttribute('data-value'));
-                    checkbox.checked = !checkbox.checked;
-                });
-            });
-        });
-        document.getElementById('randomButton').addEventListener('click', function() {
-            fetch('/random-data')
-                .then(response => response.json())
-                .then(data => {
-                    const randomDataContainer = document.getElementById('randomDataContainer');
-                    randomDataContainer.innerHTML = ''; // 이전 데이터를 지우기
-
-                    data.forEach(item => {
-                        const p = document.createElement('p');
-                        p.textContent = item;
-                        randomDataContainer.appendChild(p);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
-    </script>
 </head>
 <body>
     <div class="header">
-        <img src="static/logo2.png" alt="SNSLAB Logo" class="logo">
-        SNSLAB - Skin Lesion Analyzer
+        <img src="{% static 'logo.png' %}" alt="SNSLAB Logo" class="logo">
+        Cosmetics Recommendation
     </div>
     <div class="bodyContainer">
         <div class="container">
-            <form action="{% url 'recCos' %}" method="get" style="display: inline;">
-                <button type="submit" class="gotopageButton">Back to Home</button>
-            </form>
+            <div style="font-weight: bold;">Recommended Products</div> 
+            <div class="skinTypeContainer" style="margin-top: 3px; background-color: #d0e6fb; width: 90%;">
+                <strong style="color: rgb(33, 33, 33);">{{ skin_type|capfirst }} Skin</strong>
+            </div>
         </div>
+            {% for product in results %}
         <div class="skinTypeContainer">
-            <h3>Recommend Result</h3>
-            <div class="skinTypeContainer" style="margin-top: 3px; margin-bottom: 3px; background-color: #d0e6fb; width: 90%;">
-                <a style="float: left">Brand</a>
-                <strong style="color : rgb(33, 33, 33);">{{record.brand}}</strong>
+            <div class="title1">
+                <b>화장품 추천 리스트</b>
             </div>
-            <div class="skinTypeContainer" style="margin-top: 6px; background-color: #d0e6fb; width: 90%;">
-                Cosmetic Name
-                <strong style="color : rgb(33, 33, 33);">{{record.name}}</strong>
+            <div class="title1">
+                <b>화장품{{ forloop.counter }}</b>
             </div>
-                <!-- 버튼을 클릭하면 페이지를 새로고침하여 새로운 레코드를 가져옴 -->
-                <button onclick="location.reload()" class="randomButton">Get Random Record</button>
+            <div class="image">
+                <img id="cos_img" src="{{ product.image_url }}" alt="{{ product.name }}">
+            </div>
+                <a>Brand: {{ product.brand }}</a>
+                <h2>{{ product.name }}</h2>
+                
         </div>
-        
+            {% endfor %}
+        <div class="skinTypeContainer" style="margin-bottom: 20px;">
+            <form action="{% url 'result' %}" method="get" style="display: inline;">
+                <button type="submit" class="gotopageButton" style="background-color: #a5a5a5; color: rgb(33, 33, 33);">Back to Home</button>
+            </form>
+        </div>  
+    </div> 
 </body>
 
 </html>

@@ -151,6 +151,7 @@ def result(request):
                 'originaltext': formatted_data_res
             }
             name_no_ext, ext = os.path.splitext(uploadfile.name)
+            request.session['name_no_ext'] = name_no_ext
             json_filename = f"{name_no_ext}.json"
             json_file_path = os.path.join(curPath, 'json_files', json_filename)
             print(formatted_data_res)

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SNSLAB - Skin Lesion Analyzer</title>
     <style>
+        @font-face {
+            font-family: 'pretendard';
+            src: url('fonts/Pretendard-Medium.woff') format('woff');
+        }
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'pretendard', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #E5F2FA;
@@ -36,7 +41,7 @@
         }
 
         .container {
-            margin-top: 120px;
+            margin-top: 90px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -132,7 +137,7 @@
             text-align: center;
             /* line-height: 50px; */
             color: #FFF;
-            background-color: #4E82B4;
+            background-color: #8693a0;
             border-radius: 5px;
             transition: all 0.2s ;
             border: none;
@@ -151,7 +156,7 @@
             font-size: 16px;
             border: none;
             border-radius: 5px;
-            background-color: #28a745;
+            background-color: #4E82B4;
             color: white;
             cursor: pointer;
             line-height: 30px;
@@ -159,7 +164,11 @@
             transition: all 0.2s ;
         }
         button[type="submit"]:hover {
-            background-color: #218838;
+            background-color: #264058;
+        }
+        #back {
+            width: 300px;
+            height: auto;
         }
         /* 모바일 환경을 위한 미디어 쿼리 */
         @media (max-width: 768px) {
@@ -169,7 +178,7 @@
                 padding: 5px;
                 color: #ffffff;
                 font-size: 20px;
-                text-align: center;
+                /* text-align: center; */
                 position: fixed;
             }
             .container {
@@ -271,26 +280,25 @@
         //     window.location.href = "{% url 'recCos' %}";
         // }
         document.addEventListener('DOMContentLoaded', function() {
-            // Radio button logic for skin type selection
-            const skinTypeButtons = document.querySelectorAll('#skinTypeButtons .btn');
-            const skinTypeInput = document.getElementById('skinTypeInput');
+            var skinTypeButtons = document.querySelectorAll('#skinTypeButtons .btn');
+            var selectedSkinTypeInput = document.getElementById('selectedSkinType');
 
-            skinTypeButtons.forEach(button => {
+            skinTypeButtons.forEach(function(button) {
                 button.addEventListener('click', function() {
-                    skinTypeButtons.forEach(btn => btn.classList.remove('selected'));
+                    skinTypeButtons.forEach(function(btn) {
+                        btn.classList.remove('selected');
+                    });
                     button.classList.add('selected');
-                    skinTypeInput.value = button.getAttribute('data-value');
-                });
-            });
-
-            // Checkbox button logic for additional options
+                    selectedSkinTypeInput.value = button.getAttribute('data-value');
             const additionalOptionsButtons = document.querySelectorAll('#additionalOptionsButtons .btn');
             
-            additionalOptionsButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    button.classList.toggle('selected');
-                    const checkbox = document.getElementById(button.getAttribute('data-value'));
-                    checkbox.checked = !checkbox.checked;
+            // additionalOptionsButtons.forEach(button => {
+            //     button.addEventListener('click', function() {
+            //         button.classList.toggle('selected');
+            //         const checkbox = document.getElementById(button.getAttribute('data-value'));
+            //         checkbox.checked = !checkbox.checked;
+            //             });
+            //         });
                 });
             });
         });
@@ -298,46 +306,49 @@
 </head>
 <body>
     <div class="header">
-        <img src="static/logo2.png" alt="SNSLAB Logo" class="logo">
-        SNSLAB - Skin Lesion Analyzer
+        <img src="{% static 'logo.png' %}" alt="SNSLAB Logo" class="logo">
+        Cosmetics Recommendation
     </div>
     <div class="bodyContainer">
         <div class="container">
-            <form action="{% url 'result' %}" method="get" style="display: inline;">
-                <button type="submit" class="gotopageButton">Back to Home</button>
-            </form>
-        </div>
-        <div class="skinTypeContainer">
-            <h3>Lesion Result</h3>
+            <div style="font-weight: bold;">Lesion Result</div> 
             <div class="skinTypeContainer" style="margin-top: 3px; background-color: #d0e6fb; width: 90%;">
-                <strong style="color : rgb(33, 33, 33);">{{first_data}}</strong>
+                <strong style="color: rgb(33, 33, 33);">{{first_data}}</strong>
             </div>
         </div>
         <div class="skinTypeContainer">
-            <h3>Skin Type   <span style="font-size : 14px; color : grey">(Select only one)</span></h3>
+            <h3>Skin Type <span style="font-size: 14px; color: grey">(Select only one)</span></h3>
             <div class="buttons" id="skinTypeButtons">
                 <div class="btn" data-value="oily">Oily</div>
                 <div class="btn" data-value="dry">Dry</div>
-                <div class="btn" data-value="combination">SENSITIVE</div>
+                <div class="btn" data-value="sensitive">Sensitive</div>
             </div>
             <input type="hidden" name="skinType" id="skinTypeInput" required>
         </div>
-        <div class="skinTypeContainer">
+        <!-- <div class="skinTypeContainer">
             <h3>Add on Data</h3>
             <div class="buttons" id="additionalOptionsButtons">
                 <div class="btn" data-value="option1">EWG</div>
                 <div class="btn" data-value="option2">ALLERGY</div>
                 <div class="btn" data-value="option3">TWENTY</div>
             </div>
-            <!-- <input type="checkbox" name="options" value="option1" id="option1" class="hidden">
+            <input type="checkbox" name="options" value="option1" id="option1" class="hidden">
             <input type="checkbox" name="options" value="option2" id="option2" class="hidden">
-            <input type="checkbox" name="options" value="option3" id="option3" class="hidden"> -->
-        </div>
+            <input type="checkbox" name="options" value="option3" id="option3" class="hidden">
+        </div> -->
         <div class="skinTypeContainer">
-        <form action="{% url 'cosmetic' %}" method="get">
-            <button type="submit">Recommand</button>
-        </form>
+            <div class="button-container" style="display: flex; justify-content: space-between; gap: 100px;">
+                <form action="{% url 'result' %}" method="get" style="display: inline;">
+                    <button type="submit" class="gotopageButton" style="background-color: #a5a5a5;" >
+                        <img id="back" src="{% static 'back.png' %}" alt="Back to Home" style="width: 30px; height: 30px; vertical-align: middle; background-color: #a5a5a5;"></button>
+                </form>
+                <form action="{% url 'cosmetic' %}" method="get">
+                    <input type="hidden" name="skin_type" id="selectedSkinType" required>
+                    <button type="submit">Recommend</button>
+                </form>
+            </div>
         </div>
+    </div>
 </body>
 
 </html>
